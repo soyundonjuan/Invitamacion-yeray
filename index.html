@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Invitacion a la fiesta de 15 anos de Khate."
+    />
+    <title>Mis 15 - Khate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="hero" aria-label="Invitacion principal">
+      <img
+        class="hero__image"
+        src="assets/khate-3.jpg"
+        alt="Khate con vestido de quince anos y corona"
+      />
+      <div class="hero__veil"></div>
+      <nav class="topbar" aria-label="Navegacion principal">
+        <a href="#fecha">Fecha</a>
+        <a href="#musica">Musica</a>
+        <a href="#lugar">Lugar</a>
+        <a href="#confirmar">Redes</a>
+      </nav>
+      <div class="hero__content">
+        <p class="eyebrow">Celebrando mis quince</p>
+        <h1>Khate</h1>
+        <p class="hero__copy">
+          Hay momentos que se guardan para siempre. Me encantaria compartir este
+          dia tan especial contigo.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#fecha">Ver invitacion</a>
+          <a class="button button--ghost" id="heroCalendar" href="#">Agendar</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="intro section">
+        <div class="intro__text">
+          <p class="section-kicker">Una noche inolvidable</p>
+          <h2>Mis 15 anos</h2>
+          <p>
+            Te espero para vivir una celebracion elegante, llena de musica,
+            alegria y recuerdos bonitos junto a las personas que mas quiero.
+          </p>
+        </div>
+        <div class="intro__photo">
+          <img
+            src="assets/khate-1.jpg"
+            alt="Retrato de Khate con vestido de quince anos"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section class="countdown section" id="fecha" aria-labelledby="fecha-title">
+        <div class="section-heading">
+          <p class="section-kicker">Falta poco</p>
+          <h2 id="fecha-title">Cuenta regresiva</h2>
+          <p id="eventDateText">Sabado 12 de diciembre de 2026, 7:00 p. m.</p>
+        </div>
+        <div class="timer" aria-live="polite">
+          <div>
+            <strong id="days">00</strong>
+            <span>Dias</span>
+          </div>
+          <div>
+            <strong id="hours">00</strong>
+            <span>Horas</span>
+          </div>
+          <div>
+            <strong id="minutes">00</strong>
+            <span>Minutos</span>
+          </div>
+          <div>
+            <strong id="seconds">00</strong>
+            <span>Segundos</span>
+          </div>
+        </div>
+        <div class="calendar-actions" aria-label="Opciones para agendar">
+          <a class="button button--primary" id="downloadIcs" href="#">Descargar calendario</a>
+          <a class="button button--soft" id="googleCalendar" href="#" target="_blank" rel="noreferrer">Google Calendar</a>
+          <a class="button button--soft" id="outlookCalendar" href="#" target="_blank" rel="noreferrer">Outlook</a>
+        </div>
+      </section>
+
+      <section class="music section" id="musica" aria-labelledby="musica-title">
+        <div class="music__copy">
+          <p class="section-kicker">Playlist</p>
+          <h2 id="musica-title">La musica de Khate</h2>
+          <p>
+            Una seleccion para entrar en ambiente antes de la celebracion.
+          </p>
+        </div>
+        <div class="player-shell">
+          <iframe
+            id="playlistFrame"
+            title="Playlist de Khate"
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva?utm_source=generator"
+            width="100%"
+            height="352"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="location section" id="lugar" aria-labelledby="lugar-title">
+        <div>
+          <p class="section-kicker">Donde nos vemos</p>
+          <h2 id="lugar-title">Salon de eventos</h2>
+          <p id="locationText">
+            Direccion por confirmar. Usa el boton para abrir la ruta en Google
+            Maps.
+          </p>
+        </div>
+        <a class="button button--primary" id="mapsButton" href="#" target="_blank" rel="noreferrer">
+          Como llegar
+        </a>
+      </section>
+
+      <section class="gallery section" aria-label="Galeria de fotos">
+        <img
+          src="assets/khate-2.jpg"
+          alt="Khate posando con corona"
+          loading="lazy"
+        />
+        <img
+          src="assets/khate-3.jpg"
+          alt="Khate con ramo y vestido de quince anos"
+          loading="lazy"
+        />
+      </section>
+
+      <section class="social section" id="confirmar" aria-labelledby="social-title">
+        <div>
+          <p class="section-kicker">Comparte la emocion</p>
+          <h2 id="social-title">Redes sociales</h2>
+          <p>
+            Acompananos y etiqueta tus fotos de la noche para guardar cada
+            recuerdo.
+          </p>
+        </div>
+        <div class="social__links" aria-label="Redes sociales">
+          <a id="instagramLink" href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16a4.5 4.5 0 0 1 0-9Zm0 2A2.5 2.5 0 1 0 12 14a2.5 2.5 0 0 0 0-5Zm5.25-2.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/></svg>
+          </a>
+          <a id="tiktokLink" href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 2c.4 3 2 4.8 5 5.1V11a8.4 8.4 0 0 1-5-1.6v6.8a5.8 5.8 0 1 1-5.8-5.8c.4 0 .8 0 1.1.1v3.9a2.1 2.1 0 1 0 .8 1.7V2h3.9Z"/></svg>
+          </a>
+          <a id="whatsappLink" href="#" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2.2 22l4.8-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 0 1 6.8 12.2A8 8 0 0 1 7.4 18.8l-.4-.2-2 .5.5-2-.3-.4A8 8 0 0 1 12 4Zm-3 4.3c-.2 0-.5.1-.7.4-.2.3-.8.8-.8 2s.8 2.3 1 2.5c.1.2 1.6 2.6 4 3.5 2 .8 2.4.6 2.8.6.4 0 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.7-.4-1.5-.7c-.2-.1-.4-.1-.6.2l-.7.9c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3-2.7c-.1-.3 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.5-.6-.5H9Z"/></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Con carino, Khate y su familia.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
