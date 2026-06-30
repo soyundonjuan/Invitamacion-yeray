@@ -26,6 +26,17 @@ const formatEventDate = new Intl.DateTimeFormat("es-CO", {
   minute: "2-digit",
 });
 
+const formatCalendarMonth = new Intl.DateTimeFormat("es-CO", {
+  month: "long",
+  year: "numeric",
+});
+
+const formatCalendarNote = new Intl.DateTimeFormat("es-CO", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+});
+
 const pad = (value) => String(value).padStart(2, "0");
 
 const fallbackImage =
@@ -113,6 +124,44 @@ function buildIcsFile() {
   );
 }
 
+function renderEventCalendar() {
+  const eventDate = new Date(invitation.startsAt);
+  const year = eventDate.getFullYear();
+  const month = eventDate.getMonth();
+  const eventDay = eventDate.getDate();
+  const firstDay = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const mondayFirstOffset = (firstDay.getDay() + 6) % 7;
+  const calendarDays = document.querySelector("#calendarDays");
+
+  document.querySelector("#calendarMonth").textContent =
+    formatCalendarMonth.format(eventDate);
+  document.querySelector("#calendarEventNote").textContent =
+    `Celebracion: ${formatCalendarNote.format(eventDate)}`;
+
+  calendarDays.innerHTML = "";
+
+  for (let index = 0; index < mondayFirstOffset; index += 1) {
+    const emptyDay = document.createElement("span");
+    emptyDay.className = "calendar-day calendar-day--empty";
+    emptyDay.setAttribute("aria-hidden", "true");
+    calendarDays.append(emptyDay);
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dayElement = document.createElement("span");
+    dayElement.className = "calendar-day";
+    dayElement.textContent = day;
+
+    if (day === eventDay) {
+      dayElement.classList.add("calendar-day--event");
+      dayElement.setAttribute("aria-label", `Dia de la celebracion, ${day}`);
+    }
+
+    calendarDays.append(dayElement);
+  }
+}
+
 function hydrateInvitation() {
   document.title = invitation.title;
   document.querySelector("#eventDateText").textContent =
@@ -147,6 +196,8 @@ function hydrateInvitation() {
       replaceMissingImage();
     }
   });
+
+  renderEventCalendar();
 }
 
 hydrateInvitation();

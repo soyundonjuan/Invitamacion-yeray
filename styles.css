@@ -4,12 +4,19 @@
   --rose-300: #e8b8ae;
   --rose-500: #c98279;
   --rose-700: #7d3f3a;
+  --blush: #ffecef;
+  --sage: #6f8f7a;
   --gold: #b9864f;
   --gold-light: #f3d7ad;
   --ink: #33201e;
   --muted: #745c58;
   --surface: rgba(255, 250, 248, 0.9);
-  --shadow: 0 22px 70px rgba(125, 63, 58, 0.2);
+  --surface-solid: #fffaf8;
+  --radius-lg: 32px;
+  --radius-md: 22px;
+  --radius-sm: 999px;
+  --shadow: 0 24px 72px rgba(125, 63, 58, 0.2);
+  --sparkle: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 18%, transparent 19%);
 }
 
 * {
@@ -23,6 +30,9 @@ html {
 body {
   margin: 0;
   background:
+    radial-gradient(circle at 82% 8%, rgba(255, 255, 255, 0.78) 0 0.12rem, transparent 0.16rem),
+    radial-gradient(circle at 92% 22%, rgba(243, 215, 173, 0.84) 0 0.1rem, transparent 0.15rem),
+    radial-gradient(circle at 8% 44%, rgba(255, 255, 255, 0.72) 0 0.1rem, transparent 0.16rem),
     radial-gradient(circle at 15% 10%, rgba(243, 215, 173, 0.34), transparent 32rem),
     linear-gradient(180deg, #fff8f6 0%, #f6e2df 52%, #fffaf7 100%);
   color: var(--ink);
@@ -106,6 +116,7 @@ a {
   font-size: 0.82rem;
   font-weight: 700;
   backdrop-filter: blur(12px);
+  border-radius: var(--radius-sm);
 }
 
 .hero__content {
@@ -121,7 +132,7 @@ a {
   color: var(--gold-light);
   font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -138,12 +149,34 @@ h2 {
 }
 
 h1 {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
   font-size: clamp(4.8rem, 16vw, 12rem);
-  text-shadow: 0 12px 38px rgba(51, 32, 30, 0.32);
+  max-width: 58rem;
+  text-shadow:
+    0 2px 0 rgba(243, 215, 173, 0.74),
+    0 12px 38px rgba(51, 32, 30, 0.32);
 }
 
 h2 {
+  position: relative;
+  display: inline-block;
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
   font-size: clamp(2.6rem, 7vw, 5.8rem);
+  color: var(--rose-700);
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -0.28rem;
+  height: 0.18rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), transparent);
+  box-shadow: 0 0 22px rgba(243, 215, 173, 0.75);
 }
 
 .hero__copy,
@@ -181,6 +214,7 @@ h2 {
   text-decoration: none;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  border-radius: var(--radius-sm);
 }
 
 .button:hover,
@@ -197,7 +231,9 @@ h2 {
 
 .button--primary {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  box-shadow: 0 14px 28px rgba(185, 134, 79, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 14px 28px rgba(185, 134, 79, 0.24);
 }
 
 .button--ghost {
@@ -233,6 +269,29 @@ h2 {
   box-shadow: var(--shadow);
   background: var(--rose-100);
   overflow: hidden;
+  border: 1px solid rgba(185, 134, 79, 0.26);
+  border-radius: var(--radius-lg);
+}
+
+.intro__text,
+.music__copy {
+  position: relative;
+}
+
+.intro__text::before,
+.music__copy::before,
+.section-heading::before {
+  content: "";
+  position: absolute;
+  width: 5.5rem;
+  height: 5.5rem;
+  transform: translate(-1.3rem, -1.3rem);
+  background-image:
+    var(--sparkle),
+    radial-gradient(circle, rgba(243, 215, 173, 0.88) 0 12%, transparent 13%);
+  background-size: 1.6rem 1.6rem, 2.5rem 2.5rem;
+  opacity: 0.72;
+  pointer-events: none;
 }
 
 .intro__photo img,
@@ -247,8 +306,98 @@ h2 {
 }
 
 .section-heading {
+  position: relative;
   display: grid;
   justify-items: center;
+}
+
+.event-calendar {
+  width: min(100%, 35rem);
+  margin: 2rem auto 0;
+  padding: clamp(1rem, 3vw, 1.4rem);
+  border: 1px solid rgba(185, 134, 79, 0.34);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 236, 239, 0.82)),
+    radial-gradient(circle at 92% 12%, rgba(243, 215, 173, 0.55), transparent 10rem);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.event-calendar__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.45rem 0.35rem 1rem;
+}
+
+.event-calendar__label {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.event-calendar__top strong {
+  color: var(--rose-700);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1;
+}
+
+.event-calendar__weekdays,
+.event-calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.event-calendar__weekdays span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.calendar-day {
+  min-height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.calendar-day--empty {
+  background: transparent;
+}
+
+.calendar-day--event {
+  position: relative;
+  color: white;
+  background: linear-gradient(135deg, var(--rose-500), var(--gold));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.68),
+    0 10px 24px rgba(185, 134, 79, 0.34);
+}
+
+.calendar-day--event::after {
+  content: "";
+  position: absolute;
+  inset: -0.28rem;
+  border: 1px solid rgba(243, 215, 173, 0.9);
+  border-radius: 20px;
+}
+
+.event-calendar__note {
+  margin: 1rem 0 0;
+  color: var(--rose-700);
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .timer {
@@ -265,6 +414,7 @@ h2 {
   border: 1px solid rgba(185, 134, 79, 0.28);
   background: var(--surface);
   box-shadow: var(--shadow);
+  border-radius: var(--radius-lg);
 }
 
 .timer div {
@@ -272,6 +422,9 @@ h2 {
   display: grid;
   place-items: center;
   padding: 1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(249, 230, 228, 0.82)),
+    radial-gradient(circle at 88% 14%, rgba(243, 215, 173, 0.7), transparent 5rem);
 }
 
 .timer strong {
@@ -295,11 +448,13 @@ h2 {
 
 .player-shell {
   padding: 0.85rem;
+  overflow: hidden;
 }
 
 .player-shell iframe {
   display: block;
   border: 0;
+  border-radius: 24px;
 }
 
 .location,
@@ -317,6 +472,8 @@ h2 {
   aspect-ratio: 4 / 5;
   background: var(--rose-100);
   box-shadow: var(--shadow);
+  border: 1px solid rgba(185, 134, 79, 0.26);
+  border-radius: var(--radius-lg);
 }
 
 .social__links {
@@ -332,6 +489,7 @@ h2 {
   place-items: center;
   border: 1px solid rgba(185, 134, 79, 0.28);
   background: linear-gradient(135deg, #fff, var(--rose-100));
+  border-radius: 18px;
 }
 
 .social svg {
@@ -393,6 +551,17 @@ footer {
 
   .topbar {
     justify-content: flex-start;
+  }
+
+  .event-calendar__top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .calendar-day {
+    min-height: 2.25rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
   }
 }
 

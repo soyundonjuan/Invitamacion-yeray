@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -70,6 +70,25 @@
           <p class="section-kicker">Falta poco</p>
           <h2 id="fecha-title">Cuenta regresiva</h2>
           <p id="eventDateText">Sabado 12 de diciembre de 2026, 7:00 p. m.</p>
+        </div>
+        <div class="event-calendar" aria-labelledby="calendarMonth">
+          <div class="event-calendar__top">
+            <span class="event-calendar__label">Calendario</span>
+            <strong id="calendarMonth">Diciembre 2026</strong>
+          </div>
+          <div class="event-calendar__weekdays" aria-hidden="true">
+            <span>Lun</span>
+            <span>Mar</span>
+            <span>Mie</span>
+            <span>Jue</span>
+            <span>Vie</span>
+            <span>Sab</span>
+            <span>Dom</span>
+          </div>
+          <div class="event-calendar__days" id="calendarDays"></div>
+          <p class="event-calendar__note" id="calendarEventNote">
+            Dia de la celebracion
+          </p>
         </div>
         <div class="timer" aria-live="polite">
           <div>
