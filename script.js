@@ -1,13 +1,13 @@
 const invitation = {
-  name: "Khate",
-  title: "Mis 15 - Khate",
+  name: "Yeray Pachero",
+  title: "Mis 15 - Yeray Pachero",
   startsAt: "2026-12-12T19:00:00-05:00",
   endsAt: "2026-12-13T01:00:00-05:00",
   locationName: "Salon de eventos",
   address: "Direccion por confirmar",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Salon%20de%20eventos",
   description:
-    "Acompananos a celebrar los 15 anos de Khate en una noche especial.",
+    "Acompananos a celebrar los 15 anos de Yeray Pachero en una noche especial.",
   playlistUrl:
     "https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva?utm_source=generator",
   socials: {
@@ -41,7 +41,7 @@ const fallbackImage =
       </defs>
       <rect width="1200" height="1600" fill="url(#bg)"/>
       <circle cx="600" cy="660" r="310" fill="none" stroke="#b9864f" stroke-width="10" opacity=".5"/>
-      <text x="600" y="690" text-anchor="middle" font-family="Georgia, serif" font-size="160" fill="#7d3f3a">Khate</text>
+      <text x="600" y="690" text-anchor="middle" font-family="Georgia, serif" font-size="120" fill="#7d3f3a">Yeray Pachero</text>
       <text x="600" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#745c58">Mis 15 anos</text>
     </svg>
   `);
@@ -95,9 +95,9 @@ function buildIcsFile() {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Khate//Invitacion XV//ES",
+    "PRODID:-//Yeray Pachero//Invitacion XV//ES",
     "BEGIN:VEVENT",
-    `UID:${Date.now()}@khate-xv`,
+    `UID:${Date.now()}@yeray-pachero-xv`,
     `DTSTAMP:${toCalendarStamp(new Date().toISOString())}`,
     `DTSTART:${toCalendarStamp(invitation.startsAt)}`,
     `DTEND:${toCalendarStamp(invitation.endsAt)}`,
@@ -130,7 +130,7 @@ function hydrateInvitation() {
   document.querySelector("#googleCalendar").href = googleUrl;
   document.querySelector("#outlookCalendar").href = outlookUrl;
   document.querySelector("#downloadIcs").href = icsUrl;
-  document.querySelector("#downloadIcs").download = "mis-15-khate.ics";
+  document.querySelector("#downloadIcs").download = "mis-15-yeray-pachero.ics";
 
   document.querySelector("#instagramLink").href = invitation.socials.instagram;
   document.querySelector("#tiktokLink").href = invitation.socials.tiktok;
