@@ -1,13 +1,15 @@
 const invitation = {
   name: "Yeray Pachero",
   title: "Mis 15 - Yeray Pachero",
-  startsAt: "2026-12-12T19:00:00-05:00",
-  endsAt: "2026-12-13T01:00:00-05:00",
-  locationName: "Salon de eventos",
-  address: "Direccion por confirmar",
-  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Salon%20de%20eventos",
+  startsAt: "2026-08-01T20:00:00-05:00",
+  endsAt: "2026-08-02T02:00:00-05:00",
+  locationName: "Salon de eventos El York",
+  address: "Blas de Lezo",
+  mapsUrl: "https://maps.app.goo.gl/c2pcLYeJusupSj8Z9",
   description:
-    "Acompananos a celebrar los 15 anos de Yeray Pachero en una noche especial.",
+    "Acompananos a celebrar los 15 anos de Yeray Pachero. Codigo de vestimenta: formal. Lluvia de sobres.",
+  rsvpUrl:
+    "https://wa.me/?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pachero",
   playlistUrl:
     "https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva?utm_source=generator",
   socials: {
@@ -170,6 +172,7 @@ function hydrateInvitation() {
   document.querySelector("#locationText").textContent =
     `${invitation.locationName} - ${invitation.address}`;
   document.querySelector("#mapsButton").href = invitation.mapsUrl;
+  document.querySelector("#rsvpButton").href = invitation.rsvpUrl;
 
   const googleUrl = buildGoogleCalendarUrl();
   const outlookUrl = buildOutlookCalendarUrl();
