@@ -9,7 +9,7 @@ const invitation = {
   description:
     "Acompananos a celebrar los 15 anos de Yeray Pachero. Codigo de vestimenta: formal. Lluvia de sobres.",
   rsvpUrl:
-    "https://wa.me/?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pachero",
+    "https://wa.me/573007460242?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pachero",
   playlistUrl:
     "https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva?utm_source=generator",
   socials: {
@@ -203,6 +203,60 @@ function hydrateInvitation() {
   renderEventCalendar();
 }
 
+function setupRevealAnimations() {
+  const animatedElements = document.querySelectorAll(
+    [
+      ".topbar a",
+      ".hero__content > *",
+      ".section-heading",
+      ".intro__text",
+      ".intro__photo",
+      ".event-calendar",
+      ".timer > div",
+      ".calendar-actions > *",
+      ".details__intro",
+      ".detail-card",
+      ".music__copy",
+      ".player-shell",
+      ".location > *",
+      ".gallery img",
+      ".rsvp > *",
+      ".social > *",
+      "footer",
+    ].join(",")
+  );
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    animatedElements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  animatedElements.forEach((element, index) => {
+    element.classList.add("reveal");
+    element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    animatedElements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+  );
+
+  animatedElements.forEach((element) => observer.observe(element));
+}
+
 hydrateInvitation();
+setupRevealAnimations();
 updateCountdown();
 setInterval(updateCountdown, 1000);

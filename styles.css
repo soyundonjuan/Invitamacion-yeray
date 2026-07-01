@@ -50,6 +50,32 @@ a {
   color: inherit;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.intro__photo.reveal,
+.player-shell.reveal,
+.gallery img.reveal {
+  transform: translateY(24px) scale(0.96);
+}
+
+.detail-card.reveal,
+.timer div.reveal {
+  transform: translateY(22px) scale(0.94);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .skip-link {
   position: fixed;
   left: 1rem;
@@ -701,5 +727,10 @@ footer {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
