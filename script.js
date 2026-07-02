@@ -1,21 +1,24 @@
 const invitation = {
-  name: "Yeray Pachero",
-  title: "Mis 15 - Yeray Pachero",
+  name: "Yeray Pacheco",
+  title: "Mis 15 - Yeray Pacheco",
   startsAt: "2026-08-01T20:00:00-05:00",
   endsAt: "2026-08-02T02:00:00-05:00",
-  locationName: "Salon de eventos El York",
+  locationName: "Salón de eventos El York",
   address: "Blas de Lezo",
   mapsUrl: "https://maps.app.goo.gl/c2pcLYeJusupSj8Z9",
   description:
-    "Acompananos a celebrar los 15 anos de Yeray Pachero. Codigo de vestimenta: formal. Lluvia de sobres.",
+    "Acompáñanos a celebrar los 15 años de Yeray Pacheco. Código de vestimenta: formal. Lluvia de sobres.",
   rsvpUrl:
-    "https://wa.me/573007460242?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pachero",
+    "https://wa.me/573007460242?text=Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pacheco",
   playlistUrl:
-    "https://open.spotify.com/embed/playlist/37i9dQZF1DX10zKzsJ2jva?utm_source=generator",
+    "https://open.spotify.com/embed/playlist/2nZ7jUZ7UAs8LUvLSmN4Fs?utm_source=generator",
   socials: {
-    instagram: "https://www.instagram.com/",
-    tiktok: "https://www.tiktok.com/",
-    whatsapp: "https://wa.me/",
+    instagram:
+      "https://www.instagram.com/yerapachecor_?igsh=MWRheGpqazliNnhwcA%3D%3D&utm_source=qr",
+    tiktok: "https://www.tiktok.com/@yera.pacheco2?_r=1&_t=ZS-97gYq3Bptxg",
+    facebook: "https://www.facebook.com/share/1EUYah9m7h/?mibextid=wwXIfr",
+    whatsapp:
+      "https://wa.me/573007460242?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pacheco",
   },
 };
 
@@ -54,8 +57,8 @@ const fallbackImage =
       </defs>
       <rect width="1200" height="1600" fill="url(#bg)"/>
       <circle cx="600" cy="660" r="310" fill="none" stroke="#b9864f" stroke-width="10" opacity=".5"/>
-      <text x="600" y="690" text-anchor="middle" font-family="Georgia, serif" font-size="120" fill="#7d3f3a">Yeray Pachero</text>
-      <text x="600" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#745c58">Mis 15 anos</text>
+      <text x="600" y="690" text-anchor="middle" font-family="Georgia, serif" font-size="120" fill="#7d3f3a">Yeray Pacheco</text>
+      <text x="600" y="790" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#745c58">Mis 15 años</text>
     </svg>
   `);
 
@@ -108,9 +111,9 @@ function buildIcsFile() {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Yeray Pachero//Invitacion XV//ES",
+    "PRODID:-//Yeray Pacheco//Invitación XV//ES",
     "BEGIN:VEVENT",
-    `UID:${Date.now()}@yeray-pachero-xv`,
+    `UID:${Date.now()}@yeray-pacheco-xv`,
     `DTSTAMP:${toCalendarStamp(new Date().toISOString())}`,
     `DTSTART:${toCalendarStamp(invitation.startsAt)}`,
     `DTEND:${toCalendarStamp(invitation.endsAt)}`,
@@ -139,7 +142,7 @@ function renderEventCalendar() {
   document.querySelector("#calendarMonth").textContent =
     formatCalendarMonth.format(eventDate);
   document.querySelector("#calendarEventNote").textContent =
-    `Celebracion: ${formatCalendarNote.format(eventDate)}`;
+    `Celebración: ${formatCalendarNote.format(eventDate)}`;
 
   calendarDays.innerHTML = "";
 
@@ -157,7 +160,7 @@ function renderEventCalendar() {
 
     if (day === eventDay) {
       dayElement.classList.add("calendar-day--event");
-      dayElement.setAttribute("aria-label", `Dia de la celebracion, ${day}`);
+      dayElement.setAttribute("aria-label", `Día de la celebración, ${day}`);
     }
 
     calendarDays.append(dayElement);
@@ -182,10 +185,11 @@ function hydrateInvitation() {
   document.querySelector("#googleCalendar").href = googleUrl;
   document.querySelector("#outlookCalendar").href = outlookUrl;
   document.querySelector("#downloadIcs").href = icsUrl;
-  document.querySelector("#downloadIcs").download = "mis-15-yeray-pachero.ics";
+  document.querySelector("#downloadIcs").download = "mis-15-yeray-pacheco.ics";
 
   document.querySelector("#instagramLink").href = invitation.socials.instagram;
   document.querySelector("#tiktokLink").href = invitation.socials.tiktok;
+  document.querySelector("#facebookLink").href = invitation.socials.facebook;
   document.querySelector("#whatsappLink").href = invitation.socials.whatsapp;
 
   document.querySelectorAll("img").forEach((image) => {
