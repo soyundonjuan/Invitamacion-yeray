@@ -17,8 +17,6 @@ const invitation = {
       "https://www.instagram.com/yerapachecor_?igsh=MWRheGpqazliNnhwcA%3D%3D&utm_source=qr",
     tiktok: "https://www.tiktok.com/@yera.pacheco2?_r=1&_t=ZS-97gYq3Bptxg",
     facebook: "https://www.facebook.com/share/1EUYah9m7h/?mibextid=wwXIfr",
-    whatsapp:
-      "https://wa.me/573007460242?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20a%20los%2015%20de%20Yeray%20Pacheco",
   },
 };
 
@@ -190,7 +188,6 @@ function hydrateInvitation() {
   document.querySelector("#instagramLink").href = invitation.socials.instagram;
   document.querySelector("#tiktokLink").href = invitation.socials.tiktok;
   document.querySelector("#facebookLink").href = invitation.socials.facebook;
-  document.querySelector("#whatsappLink").href = invitation.socials.whatsapp;
 
   document.querySelectorAll("img").forEach((image) => {
     const replaceMissingImage = () => {

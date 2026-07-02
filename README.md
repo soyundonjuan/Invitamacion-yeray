@@ -9,7 +9,7 @@ Los datos principales están en `script.js`, dentro del objeto `invitation`:
 - `startsAt` y `endsAt`: fecha y hora del evento.
 - `locationName`, `address` y `mapsUrl`: lugar y enlace de Google Maps.
 - `playlistUrl`: playlist embebida de Spotify.
-- `socials`: enlaces de Instagram, TikTok, Facebook y WhatsApp.
+- `socials`: enlaces de Instagram, TikTok y Facebook.
 
 ## Fotos
 
