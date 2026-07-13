@@ -8,10 +8,6 @@
     "passes": "Sin cupos"
   },
   {
-    "name": "Invitado especial",
-    "passes": "2 Cupos"
-  },
-  {
     "name": "Nombre de invitado",
     "passes": "# Cupos"
   }
