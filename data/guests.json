@@ -1,18 +1,22 @@
 [
   {
-    "name": "Nombre de invitado",
-    "passes": "# Cupos"
-  },
-  {
-    "name": "Familia Rodríguez Piña",
-    "passes": "4 Cupos"
+    "name": "Abraham y Juan Piña",
+    "passes": "Sin cupos"
   },
   {
     "name": "Familia Pacheco Cardona",
     "passes": "4 Cupos"
   },
   {
+    "name": "Familia Rodríguez Piña",
+    "passes": "4 Cupos"
+  },
+  {
     "name": "Invitado especial",
     "passes": "2 Cupos"
+  },
+  {
+    "name": "Nombre de invitado",
+    "passes": "# Cupos"
   }
 ]
