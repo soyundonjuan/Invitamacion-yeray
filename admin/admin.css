@@ -47,19 +47,11 @@
   margin-top: 1.25rem;
 }
 
-.admin-token-field {
-  display: grid;
-  gap: 0.45rem;
-  margin-top: 1.25rem;
-}
-
-.admin-token-field,
 .admin-form label {
   display: grid;
   gap: 0.45rem;
 }
 
-.admin-token-field span,
 .admin-form span {
   color: var(--gold);
   font-size: 0.78rem;
@@ -67,7 +59,6 @@
   text-transform: uppercase;
 }
 
-.admin-token-field input,
 .admin-form input {
   min-height: 3.2rem;
   width: 100%;
@@ -80,7 +71,6 @@
   outline: none;
 }
 
-.admin-token-field input:focus,
 .admin-form input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 0 4px rgba(243, 215, 173, 0.38);

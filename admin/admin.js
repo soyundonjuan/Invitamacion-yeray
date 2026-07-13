@@ -2,33 +2,19 @@ const guestsApiUrl = new URL(
   "../api/guests",
   document.querySelector('script[src$="admin.js"]').src
 ).href;
-const ADMIN_TOKEN_KEY = "yeray-xv-admin-token";
 
 let guests = [];
 let editingIndex = null;
 
 const guestForm = document.querySelector("#guestForm");
-const tokenInput = document.querySelector("#adminToken");
 const nameInput = document.querySelector("#adminGuestName");
 const passesInput = document.querySelector("#adminGuestPasses");
 const guestList = document.querySelector("#adminGuestList");
 const feedback = document.querySelector("#adminFeedback");
 const clearGuests = document.querySelector("#clearGuests");
 
-tokenInput.value = sessionStorage.getItem(ADMIN_TOKEN_KEY) || "";
-
 function setFeedback(message) {
   feedback.textContent = message;
-}
-
-function getAdminToken() {
-  const token = tokenInput.value.trim();
-
-  if (token) {
-    sessionStorage.setItem(ADMIN_TOKEN_KEY, token);
-  }
-
-  return token;
 }
 
 async function loadGuests() {
@@ -43,17 +29,10 @@ async function loadGuests() {
 }
 
 async function saveGuests(nextGuests) {
-  const token = getAdminToken();
-
-  if (!token) {
-    throw new Error("Escribe la clave de administrador.");
-  }
-
   const response = await fetch(guestsApiUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Admin-Token": token,
     },
     body: JSON.stringify({ guests: nextGuests }),
   });

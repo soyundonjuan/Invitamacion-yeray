@@ -122,14 +122,6 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const expectedToken = process.env.ADMIN_TOKEN;
-    const providedToken = req.headers["x-admin-token"];
-
-    if (!expectedToken || providedToken !== expectedToken) {
-      json(res, 401, { error: "No autorizado" });
-      return;
-    }
-
     try {
       const body = parseBody(req);
       const guests = validateGuests(body.guests);
