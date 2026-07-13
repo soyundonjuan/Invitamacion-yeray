@@ -10,6 +10,13 @@ Los datos principales están en `script.js`, dentro del objeto `invitation`:
 - `locationName`, `address` y `mapsUrl`: lugar y enlace de Google Maps.
 - `playlistUrl`: playlist embebida de Spotify.
 - `socials`: enlaces de Instagram, TikTok y Facebook.
+- `guestList`: nombres de invitados y cupos asignados.
+
+## Administrar invitados
+
+Abre `/admin/` para agregar, editar o eliminar invitados y cupos. Esta versión
+guarda la lista en `localStorage`, así que funciona en el mismo navegador donde
+se administra.
 
 ## Fotos
 

@@ -16,8 +16,35 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="guest-gate-active">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <section
+      class="guest-gate"
+      id="guestGate"
+      aria-labelledby="guestGateTitle"
+      aria-modal="true"
+      role="dialog"
+    >
+      <div class="guest-gate__panel">
+        <p class="section-kicker">Invitación especial</p>
+        <h2 id="guestGateTitle">Busca tu nombre</h2>
+        <p>
+          Escribe tu nombre y selecciona tu invitación para ver los cupos
+          reservados.
+        </p>
+        <label class="guest-gate__field" for="guestSearch">
+          <span>Nombre del invitado</span>
+          <input
+            id="guestSearch"
+            type="search"
+            autocomplete="off"
+            placeholder="Empieza a escribir..."
+          />
+        </label>
+        <div class="guest-gate__results" id="guestResults" aria-live="polite"></div>
+      </div>
+    </section>
 
     <header class="hero" aria-label="Invitación principal">
       <img
@@ -47,6 +74,27 @@
     </header>
 
     <main id="contenido">
+      <section class="guest-message section" aria-labelledby="guest-message-title">
+        <article class="guest-card">
+          <div class="guest-message__content">
+            <p class="section-kicker">Invitación especial</p>
+            <h2 id="guest-message-title">Queremos verte allí</h2>
+            <div class="guest-message__recipient">
+              <span>Para</span>
+              <strong class="guest-message__name" id="guestName">Nombre de invitado</strong>
+            </div>
+            <p>
+              Con mucho cariño, queremos invitarte a celebrar esta noche tan
+              especial junto a nuestra familia.
+            </p>
+          </div>
+          <div class="guest-message__passes" aria-label="Cupos disponibles">
+            <strong id="guestPasses"># Cupos</strong>
+            <span>Cupos reservados</span>
+          </div>
+        </article>
+      </section>
+
       <section class="intro section">
         <div class="intro__text">
           <p class="section-kicker">Una noche inolvidable</p>

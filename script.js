@@ -1,6 +1,8 @@
 const invitation = {
   name: "Yeray Pacheco",
   title: "Mis 15 - Yeray Pacheco",
+  guestName: "Nombre de invitado",
+  guestPasses: "# Cupos",
   startsAt: "2026-08-01T20:00:00-05:00",
   endsAt: "2026-08-02T02:00:00-05:00",
   locationName: "Salón de eventos El York",
@@ -19,6 +21,39 @@ const invitation = {
     facebook: "https://www.facebook.com/share/1EUYah9m7h/?mibextid=wwXIfr",
   },
 };
+
+const GUEST_STORAGE_KEY = "yeray-xv-guests";
+
+const defaultGuestList = [
+  { name: "Nombre de invitado", passes: "# Cupos" },
+  { name: "Familia Rodríguez Piña", passes: "4 Cupos" },
+  { name: "Familia Pacheco Cardona", passes: "4 Cupos" },
+  { name: "Invitado especial", passes: "2 Cupos" },
+];
+
+function loadGuestList() {
+  try {
+    const storedGuestList = localStorage.getItem(GUEST_STORAGE_KEY);
+
+    if (!storedGuestList) {
+      return defaultGuestList;
+    }
+
+    const storedGuests = JSON.parse(storedGuestList);
+
+    if (!Array.isArray(storedGuests)) {
+      return defaultGuestList;
+    }
+
+    return storedGuests.filter(
+      (guest) => guest && guest.name && guest.passes
+    );
+  } catch {
+    return defaultGuestList;
+  }
+}
+
+const guestList = loadGuestList();
 
 const formatEventDate = new Intl.DateTimeFormat("es-CO", {
   weekday: "long",
@@ -41,6 +76,14 @@ const formatCalendarNote = new Intl.DateTimeFormat("es-CO", {
 });
 
 const pad = (value) => String(value).padStart(2, "0");
+
+function normalizeSearch(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
 
 const fallbackImage =
   "data:image/svg+xml;charset=UTF-8," +
@@ -167,6 +210,17 @@ function renderEventCalendar() {
 
 function hydrateInvitation() {
   document.title = invitation.title;
+  document.querySelector("#guestName").textContent = invitation.guestName;
+
+  const guestPasses = document.querySelector("#guestPasses");
+  const guestPassesCard = guestPasses.closest(".guest-message__passes");
+  if (invitation.guestPasses) {
+    guestPasses.textContent = invitation.guestPasses;
+    guestPassesCard.hidden = false;
+  } else {
+    guestPassesCard.hidden = true;
+  }
+
   document.querySelector("#eventDateText").textContent =
     formatEventDate.format(new Date(invitation.startsAt));
   document.querySelector("#playlistFrame").src = invitation.playlistUrl;
@@ -204,11 +258,74 @@ function hydrateInvitation() {
   renderEventCalendar();
 }
 
+function lockInvitation(isLocked) {
+  document.body.classList.toggle("guest-gate-active", isLocked);
+  document.querySelectorAll("header, main, footer").forEach((section) => {
+    section.toggleAttribute("inert", isLocked);
+    section.setAttribute("aria-hidden", String(isLocked));
+  });
+}
+
+function selectGuest(guest) {
+  invitation.guestName = guest.name;
+  invitation.guestPasses = guest.passes;
+  hydrateInvitation();
+  lockInvitation(false);
+  document.querySelector("#guestGate").hidden = true;
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+function renderGuestResults(query = "") {
+  const results = document.querySelector("#guestResults");
+  const normalizedQuery = normalizeSearch(query);
+  const filteredGuests = guestList
+    .filter((guest) => normalizeSearch(guest.name).includes(normalizedQuery))
+    .slice(0, 8);
+
+  results.innerHTML = "";
+
+  if (!filteredGuests.length) {
+    const emptyState = document.createElement("p");
+    emptyState.className = "guest-gate__empty";
+    emptyState.textContent = "No encontramos ese nombre. Revisa la escritura e inténtalo de nuevo.";
+    results.append(emptyState);
+    return;
+  }
+
+  filteredGuests.forEach((guest) => {
+    const button = document.createElement("button");
+    const name = document.createElement("strong");
+    const passes = document.createElement("span");
+
+    button.className = "guest-gate__option";
+    button.type = "button";
+    name.textContent = guest.name;
+    passes.textContent = guest.passes;
+    button.append(name, passes);
+    button.addEventListener("click", () => selectGuest(guest));
+    results.append(button);
+  });
+}
+
+function setupGuestGate() {
+  const searchInput = document.querySelector("#guestSearch");
+
+  lockInvitation(true);
+  renderGuestResults();
+
+  searchInput.addEventListener("input", (event) => {
+    renderGuestResults(event.target.value);
+  });
+
+  window.requestAnimationFrame(() => searchInput.focus());
+}
+
 function setupRevealAnimations() {
   const animatedElements = document.querySelectorAll(
     [
       ".topbar a",
       ".hero__content > *",
+      ".guest-message > *",
       ".section-heading",
       ".intro__text",
       ".intro__photo",
@@ -258,6 +375,7 @@ function setupRevealAnimations() {
 }
 
 hydrateInvitation();
+setupGuestGate();
 setupRevealAnimations();
 updateCountdown();
 setInterval(updateCountdown, 1000);

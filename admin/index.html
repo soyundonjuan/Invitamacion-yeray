@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin invitados - Yeray Pacheco</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-hero" aria-labelledby="adminTitle">
+        <div>
+          <p class="section-kicker">Panel de invitados</p>
+          <h1 id="adminTitle">Administrar cupos</h1>
+          <p>
+            Agrega invitados con sus cupos. La invitación usará esta lista en
+            la ventana inicial de búsqueda.
+          </p>
+        </div>
+        <a class="button button--primary" href="../index.html">Ver invitación</a>
+      </section>
+
+      <section class="admin-card" aria-labelledby="guestFormTitle">
+        <div>
+          <p class="section-kicker">Nuevo invitado</p>
+          <h2 id="guestFormTitle">Agregar a la lista</h2>
+        </div>
+        <form class="admin-form" id="guestForm">
+          <label>
+            <span>Nombre del invitado</span>
+            <input id="adminGuestName" name="guestName" type="text" required />
+          </label>
+          <label>
+            <span>Cupos</span>
+            <input
+              id="adminGuestPasses"
+              name="guestPasses"
+              type="text"
+              placeholder="Ej: 2 Cupos"
+              required
+            />
+          </label>
+          <button class="button button--primary" type="submit">Agregar invitado</button>
+        </form>
+        <p class="admin-feedback" id="adminFeedback" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="admin-card" aria-labelledby="guestListTitle">
+        <div class="admin-list-header">
+          <div>
+            <p class="section-kicker">Lista actual</p>
+            <h2 id="guestListTitle">Invitados</h2>
+          </div>
+          <button class="button button--soft" id="clearGuests" type="button">
+            Limpiar lista
+          </button>
+        </div>
+        <div class="admin-guest-list" id="adminGuestList"></div>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
