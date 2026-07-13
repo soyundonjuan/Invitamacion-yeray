@@ -23,6 +23,10 @@ const invitation = {
 };
 
 const GUEST_STORAGE_KEY = "yeray-xv-guests";
+const guestsApiUrl = new URL(
+  "api/guests",
+  document.querySelector('script[src$="script.js"]').src
+).href;
 
 const defaultGuestList = [
   { name: "Nombre de invitado", passes: "# Cupos" },
@@ -31,7 +35,7 @@ const defaultGuestList = [
   { name: "Invitado especial", passes: "2 Cupos" },
 ];
 
-function loadGuestList() {
+function loadLocalGuestList() {
   try {
     const storedGuestList = localStorage.getItem(GUEST_STORAGE_KEY);
 
@@ -53,7 +57,28 @@ function loadGuestList() {
   }
 }
 
-const guestList = loadGuestList();
+let guestList = defaultGuestList;
+
+async function loadGuestList() {
+  try {
+    const response = await fetch(guestsApiUrl, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error("No se pudo cargar la lista en la nube.");
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data.guests)) {
+      throw new Error("La lista en la nube no tiene el formato esperado.");
+    }
+
+    guestList = data.guests.filter((guest) => guest && guest.name && guest.passes);
+    localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(guestList));
+  } catch {
+    guestList = loadLocalGuestList();
+  }
+}
 
 const formatEventDate = new Intl.DateTimeFormat("es-CO", {
   weekday: "long",
@@ -307,10 +332,11 @@ function renderGuestResults(query = "") {
   });
 }
 
-function setupGuestGate() {
+async function setupGuestGate() {
   const searchInput = document.querySelector("#guestSearch");
 
   lockInvitation(true);
+  await loadGuestList();
   renderGuestResults();
 
   searchInput.addEventListener("input", (event) => {
@@ -374,8 +400,12 @@ function setupRevealAnimations() {
   animatedElements.forEach((element) => observer.observe(element));
 }
 
-hydrateInvitation();
-setupGuestGate();
-setupRevealAnimations();
-updateCountdown();
-setInterval(updateCountdown, 1000);
+async function init() {
+  hydrateInvitation();
+  await setupGuestGate();
+  setupRevealAnimations();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+init();
